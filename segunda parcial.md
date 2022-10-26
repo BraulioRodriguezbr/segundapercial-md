@@ -668,7 +668,57 @@ void main() {
   }
 }
 ```
-**Ciclo Do-While**
+
+  **_Ciclo do-while:_**
+```dart
+void main() {
+  double sumap = 0;
+  double sumai = 0;
+  var contp = 0;
+  var conti = 0;
+  double promp = 0;
+  double promi = 0;
+  print('Introduce el limite inferior, mayor a 0');
+  var li = int.parse(stdin.readLineSync()!);
+  if (li < 0) {
+    print('tu limite inferior debe ser mayor a 0');
+  }
+  if (li > 0) {
+    print('Ahora introduce un limite superior');
+    var ls = int.parse(stdin.readLineSync()!);
+    if (ls < li) {
+      print('tu limite superior debe ser mayor a tu limite inferior');
+    }
+    var cont = li;
+    do {
+      if (cont <= ls) {
+        sumai = sumai + cont;
+        conti = conti + 1;
+      }
+      if (cont % 2 == 0) {
+        sumap = sumap + cont;
+        contp = contp + 1;
+        sumai = sumai - cont;
+        conti = conti - 1;
+      }
+      cont = cont + 1;
+    } while (cont <= ls);
+
+    promi = sumai / conti;
+    print('los impares son $conti y su promedio es $promi');
+    promp = sumap / contp;
+    print('los pares son $contp y su promedio es $promp');
+    if (promp < promi) {
+      print('$promi es mayor');
+    }
+    if (promp > promi) {
+      print('el promedio $promp es mayor');
+    }
+  }
+}
 ```
 
-```
+#### 1.4 Entradas
+Ninguna
+#### Salidas
+30
