@@ -439,6 +439,7 @@ print("El total de reprobados fueron >> ",(len(alumnos)-j))
 
 **EJERCICIO 8**
 
+
 Crea un dfd que capture N numeros en el rango [li,ls] donde LI=limite inferior y LS=Limite superior para li<ls y ls>0, obtener:
   
   Cantidad de numeros pares y su promedio
@@ -465,7 +466,7 @@ Crea un dfd que capture N numeros en el rango [li,ls] donde LI=limite inferior y
   
   **Ciclo for**
   
-  ```
+  ```python
   sp=0
 cp=0
 pp=0
@@ -528,7 +529,7 @@ else:
   ```
   **Ciclo while**
   
-  ```
+  ```python
   print("Dame Límite inferior: ")
 Li = int(input())
 while Li<0:
@@ -545,7 +546,7 @@ while Ls<=Li:
   ```
   **Ciclo Do-while**
   
-  ```
+  ```dart
   pares = 0
 impares = 0
 
@@ -575,7 +576,10 @@ else:
     print("El promedio de los números impares es mayor que el promedio de los pares.")
   ```
   
+  
   **EJERCICIO 9**
+  
+  
 
 Escribe un dfd que obtenga la frecuencia de N calificaciones entre 1 y 10 indique la cantidad de reprobados y la cantidad de aprobados, el promedio de aprodabos y reprobados
 
@@ -586,10 +590,39 @@ Escribe un dfd que obtenga la frecuencia de N calificaciones entre 1 y 10 indiqu
 [![9dowuile.jpg](https://i.postimg.cc/hvDXvdJ4/9dowuile.jpg)](https://postimg.cc/N9nsPL7Z)
 
 **Prueba de Escritorio**
+  
+  |CAL[1,10]|N  |N>0 |i  |i<=N|CAL[1,10]|C  |C>0, C<=10|CAL[C]++|i++|CAL|
+|---------|---|----|---|----|---------|---|----------|--------|---|---|
+|9        |4  |4>0 |0  |0<=4| 0        |9  |9>0, 9<=0 |10      |1  |9  |
+|9        |   |    |1  |1<=4|1         |9  |9>0, 9<=0 |10      |2  |9  |
+|8        |4  |4>0 |0  |2<=4| 2        |8  |8>0, 8<=0 |9       |3  |8  |
+|7        |   |    |1  |3<=4|  3       |7  |7>0, 7<=0 |8       |4  |7  |
+
+
+
+
+|CR |CA |PR |PA |PG |SR |SA |N  |i  |i<=n|NUM|NUM>0,NUM<=10|NUM>=6|CA+1|SA+NUM|CR+1|SR+NUM|i++|PA=SA/CA|PR=SR/CR|PG=(PR+PA)/2|PG |
+|---|---|---|---|---|---|---|---|---|----|---|-------------|------|----|------|----|------|---|--------|--------|------------|---|
+|0  |0  |0  |0  |0  |0  |0  |4  |0  |0< 4|8  |8>=0,8<=10   |8>=6  |1   |8     |0   |0     |1  |
+|0  |1  |0  |0  |0  |0  |8  |4  |1  |1< 4|5  |5>=0,5<=10   |5>=6  |1   |8     |1   |5     |2  |
+|1  |1  |0  |0  |0  |5  |8  |4  |2  |2< 4|9  |9>=0,9<=10   |9>=6  |2   |17    |1   |5     |3  |
+|1  |2  |0  |0  |0  |5  |7  |4  |3  |3< 4|3  |3>=0,3<=10   |3>=6  |2   |17    |2   |8     |4  |17/2    |8/4     |(8.5+4)/2   |6.25|
+
+
+#### 1.4 Entradas.
+N
+
+C
+
+NUM
+
+#### 1.5 Salidas.
 
 
 **Ciclo for**
-```
+  
+  
+```dart
 void main() {
   double CR = 0;
   double CA = 0;
@@ -634,7 +667,7 @@ void main() {
 }
 ```
 **Ciclo while**
-```
+```dart
 void main() {
   double CR = 0;
   double CA = 0;
@@ -668,57 +701,254 @@ void main() {
   }
 }
 ```
+**Ciclo Do-While**
+```python
+  Calificaciones=int(input("Ingrese la cantidad de calificaciones"))
+vec=[]
+n=0
+cont = 0
+while(True):
+    calificacion=int(input("Calificacion: "))
+    n=n+calificacion
+    vec.append(calificacion)
+    cont += 1
+    if(cont>=Calificaciones):
+        break;
+        
+aprobado=0
+promedioAprobados = 0
+for h in vec:
+    if h>=5:
+        aprobado=aprobado+1
+        promedioAprobados = promedioAprobados + h
+promedioAprobados = promedioAprobados / aprobado
+reprobado=0
+for k in vec:
+    if k<=5:
+        reprobado=reprobado+1
+print("Cantidad de aprobados:", aprobado)
+print("Cantidad de reprobados:", reprobado)
+print("Promedio de aprobados:", promedioAprobados)
 
-  **_Ciclo do-while:_**
-```dart
-void main() {
-  double sumap = 0;
-  double sumai = 0;
-  var contp = 0;
-  var conti = 0;
-  double promp = 0;
-  double promi = 0;
-  print('Introduce el limite inferior, mayor a 0');
-  var li = int.parse(stdin.readLineSync()!);
-  if (li < 0) {
-    print('tu limite inferior debe ser mayor a 0');
-  }
-  if (li > 0) {
-    print('Ahora introduce un limite superior');
-    var ls = int.parse(stdin.readLineSync()!);
-    if (ls < li) {
-      print('tu limite superior debe ser mayor a tu limite inferior');
-    }
-    var cont = li;
-    do {
-      if (cont <= ls) {
-        sumai = sumai + cont;
-        conti = conti + 1;
-      }
-      if (cont % 2 == 0) {
-        sumap = sumap + cont;
-        contp = contp + 1;
-        sumai = sumai - cont;
-        conti = conti - 1;
-      }
-      cont = cont + 1;
-    } while (cont <= ls);
-
-    promi = sumai / conti;
-    print('los impares son $conti y su promedio es $promi');
-    promp = sumap / contp;
-    print('los pares son $contp y su promedio es $promp');
-    if (promp < promi) {
-      print('$promi es mayor');
-    }
-    if (promp > promi) {
-      print('el promedio $promp es mayor');
-    }
-  }
-}
 ```
+            
+          
+**EJERCICIO 10**
+            
+CATURE 10 NUMEROS ENTEROS POSITIVOS, DIGA CUAL ES MAYOR Y CUAL ES MENOR.
+ 
+            
+#### 1.1 Analisis. 
+CAPTURAR 10 NUMEROS ENTEROS POSITIVOS, DESPUES CALCULAR CUAL NUMERO ES MAYOR Y CUAL ES MENOR.
+            
+            
+            DFD
+            
+            
+[![44.jpg](https://i.postimg.cc/htK5gzBt/44.jpg)](https://postimg.cc/ykrPyNxM)
+#### 1.3 Prueba de escritorio 
+|A[11] |i=1 |i<=10|N |A[i]|N>0|NUM[i]=N|i++|NUM|MAYOR|i |i<=10|MAYOR>NUM[i]|MAYOR=NUM[i]|i++|MAYOR|MENOR=MAYOR|i |i<=10|MENOR<NUM[i]|MENOR=NUM[i]|i++|MENOR|
+|------|----|-----|--|----|---|--------|---|---|-----|--|-----|------------|------------|---|-----|-----------|--|-----|------------|------------|---|-----|
+|0     |1   |1<=10|1 |1   |1>0|1       |2  |1  |0    |1 |1<=10|0>1         |1           |2  |     |10         |1 |1<=10|10<1        |1           |2  |     |
+|1     |2   |2<=10|2 |2   |2>0|2       |3  |2  |1    |2 |2<=10|1>2         |2           |3  |     |           |2 |2<=10|1<2         |            |3  |     |
+|2     |3   |3<=10|3 |3   |3>0|3       |4  |3  |2    |3 |3<=10|2>3         |3           |4  |     |           |3 |3<=10|1<3         |            |4  |     |     
+|3     |4   |4<=10|4 |4   |4>0|4       |5  |4  |3    |4 |4<=10|3>4         |4           |5  |     |           |4 |4<=10|1<4         |            |5  |     |
+|4     |5   |5<=10|5 |5   |5>0|5       |6  |5  |4    |5 |5<=10|4>5         |5           |6  |     |           |5 |5<=10|1<5         |            |6  |     |
+|5     |6   |6<=10|6 |6   |6>0|6       |7  |6  |5    |6 |6<=10|5>6         |6           |7  |     |           |6 |6<=10|1<6         |            |7  |     |
+|6     |7   |7<=10|7 |7   |7>0|7       |8  |7  |6    |7 |7<=10|6>7         |7           |8  |     |           |7 |7<=10|1<7         |            |8  |     |
+|7     |8   |8<=10|8 |8   |8>0|8       |9  |8  |7    |8 |8<=10|7>8         |8           |9  |     |           |8 |8<=10|1<8         |            |9  |     |
+|8     |9   |9<=10|9 |8   |9>0|9       |10 |9  |8    |9 |9<=10|8>9         |9           |10 |     |           |9 |9<=10|1<9         |            |10 |     |
+|9     |10  |10<=10|10|9  |10>0|10     |   |10 |9    |10|10<=10|9>10       |10          |   |10   |           |10|10<=10|1<10       |            |   |1    | 
+
 
 #### 1.4 Entradas
 Ninguna
-#### Salidas
-30
+
+#### 1.5 Salidas.
+NUM
+
+MAYOR
+
+MENOR
+  
+  **CODIGO**
+  
+  ```python
+  lista = [10]
+cant = int(input("¿Cuantos numeros desea capturar?"))
+i=1
+while i <= cant:
+    n = int(input(f"{i} Ingrese un numero: "))
+    lista.append(n)
+    i+=1
+print("Numero mayor es ",max(lista))
+print("Numero menor es ",min(lista))
+```
+               
+          
+**EJERCICIO 11**
+               
+
+OBTEN LA DISTANCIA MAYOR ENTRE 2 NUMEROS CONCECUTIVOS EN UNA LISTA DE 10 NUMEROS.
+#### 1.1 Analisis.
+Insertar 10 numeros, posteriormente calcular la distancia de 2 en 2 numeros y decir cual es la mayor distancia.
+               
+              1.2 DFD
+               
+               
+![12](https://user-images.githubusercontent.com/113395327/197684202-afbcfb05-e77c-4657-97aa-c9c7c5377989.png)
+#### 1.3 Prueba de escritorio 
+|DIS[9],NUM[10]|i=1 |i<=9 |N |N>0|NUM[i]=N|i++|i  |i<9|DIS=NUM[i]-NUM[i+1]|DIS<0|D[i]=DIS|D[i]=DIS*-1|i++|
+|--------------|----|-----|--|---|--------|---|---|---|-------------------|-----|--------|-----------|---|
+|0             |1   |1<=9 |1 |1>0|1       |2  |1  |1<9|1                  |1<0  |        |           |2  |
+|1             |2   |2<=9 |2 |2>0|2       |3  |2  |2<9|1                  |1<0  |||3| 
+|2             |3   |3<=9 |3 |3>0|3       |4  |3  |3<9|1                  |1<0  |||4|
+|3             |4   |4<=9 |4 |4>0|4       |5  |4  |4<9|1                  |1<0  |||5|
+|4             |5   |5<=9 |5 |5>0|5       |6  |5  |5<9|1                  |1<0  |||6|
+|5             |6   |6<=9 |6 |6>0|6       |7  |6  |6<9|1                  |1<0  |||7|
+|6             |7   |7<=9 |7 |7>0|7       |8  |7  |7<9|1                  |1<0  |||8|
+|7             |8   |8<=9 |8 |8>0|8       |9  |8  |8<9|1                  |1<0  |||9|
+|8             |9   |9<=9 |9 |9>0|9       |   |9  |   |1                  |1<0  |1       |  
+|9             |
+
+
+|MAYOR|i |i<9|MAYOR>D[i]|MAYOR=D[i]|i++|MAYOR|
+|-----|--|---|----------|----------|---|-----|
+|O    |1 |1<9|0>1       |1|2|
+|1    |2 |2<9|1<2       | 2 |3|
+|2    |3 |3<9|2<3       | 3|4|
+|3    |4 |4<9|3<4       |4|5|
+|4    |5 |5<9|4<5       |5|6|
+|5    |6 |6<9|5<6       |6|7|
+|6    |7 |7<9|6<7       |7|8|
+|7    |8 |8<9|7<8       |8|9|
+|8    |  |   |          |||9|
+
+#### 1.4 Entradas.
+n.
+#### 1.5 Salidas.
+mayor=d[i].
+  
+  
+  **CODIGO**
+  
+  ```dart
+import 'dart:io';
+import 'dart:core';
+void main() {
+  var Re = 0;
+  var mayor = 0;
+  stdout.write('Ingresa tus numeros \n');
+  var lista = List.filled(10, 0);
+  for (var i = 0; i <= 9; i++) {
+    int Entrada = int.parse(stdin.readLineSync()!);
+    lista[i] = Entrada;
+  }
+  var diferencias = List.filled(9, 0);
+  for (var j = 0; j <= 8; j++) {
+    diferencias[j] = (lista[j] - lista[j + 1]);
+  }
+  mayor = diferencias[0];
+  for (var k = 0; k <= 8; k++) {
+    if (mayor < diferencias[k]) {
+      mayor = diferencias[k];
+    } else {}
+  }
+  stdout.write("Tu lista es ");
+  print(lista);
+  stdout.write("y sus diferencias son ");
+  print(diferencias);
+  print('La diferencia mayor es ');
+  print(mayor);
+}
+```
+  
+  
+  **EJERCICIO 12**
+  
+   Almacene en un vector el resultado de una tabla (10 numeros)
+#### 1.1 Analisis. 
+Al tamaño del array sera de 10, validaremos el numero de la tabla, en una condición de termino.
+1.2 DFD
+  
+  
+![13](https://user-images.githubusercontent.com/113395327/197684095-af2797a3-870a-44fe-a951-5756dbb6a704.png)
+#### 1.3 Prueba de escritorio 
+|n|n>0|i|i<=9|A[i]= n * i|i+1|
+|-|-|-|-|-|-|
+|5|5>0|0|0<=9|A[0]= 5 * 0|0+1|
+|2|2>0|1|1<=9|A[1]= 2 * 1|1+1|
+|4|4>0|2|2<=9|A[2]= 4 * 2|2+1|
+|9|9>0|3|3<=9|A[3]= 9 * 3|3+1|
+|8|8>0|4|4<=9|A[4]= 8 * 4|4+1|
+|3|3>0|5|5<=9|A[5]= 3 * 5|5+1|
+|8|8>0|6|6<=9|A[6]= 8 * 6|6+1|
+|6|6>0|7|7<=9|A[7]= 6 * 7|7+1|
+|4|4>0|8|8<=9|A[8]= 4 * 8|8+1|
+|3|3>0|9|9<=9|A[9]= 3 * 9|9+1|
+#### 1.4 Entradas.
+n.
+#### 1.5 Salidas.
+Mayor.
+                  
+         
+ **CODIGO**
+                  
+```dart
+import 'dart:io';
+void main(List<String> args) {
+  var array = [];
+  int n = int.parse(stdin.readLineSync()!);
+  for (var i = 0; i < 11; i++) {
+    array.add(i);
+    array[i] = n * i;
+  }
+  print('$array');
+}
+```
+                         
+                         
+ **EJERCICIO 13**
+                         
+        
+Escriba un dfd que escriba el siguiente dibujo.
+#### 1.1 Analisis. 
+Desarrollar el siguiente diagrama de flujo.
+
+SE UTILIZA UN SIMBOLO DE CICLO DE FOR DONDE i=1; i<=5; i++, DESPUES SE UTILIZA OTRO CICLO DE FOR DONDE j=1; j<=i;j++, después se utiliza un símbolo de salida para imprimir 1 y se regresa al segundo ciclo y del segundo ciclo al primero.
+
+1.2 DFD
+                                                                                                                     
+                                                                                                                     
+![14](https://user-images.githubusercontent.com/113395327/197684075-b7439c57-f658-44ec-b8d3-cb3a0f734614.png)
+#### 1.3 Prueba de escritorio 
+|i  |i<=5|j  |j<=i|1     |i++ |j++ |
+|---|----|---|----|------|----|----|
+|1  |1<=5|1  |1<=1|1     |1   |1   | 
+|2  |2<=5|2  |2<=2|11    |2   |2   |
+|3  |3<=5|3  |3<=3|111   |3   |3   |
+|4  |4<=5|4  |4<=4|1111  |4   |4   |
+|5  |5<=5|5  |5<=5|11111 |5   |5   |
+
+#### 1.4 Entradas.
+No tiene ninguna entrada
+#### 1.5 Salidas.
+ *
+                        
+                        
+**CODIGO**
+                        
+             
+```dart
+import 'dart:io';
+void main() {
+  var n = 5;
+  for (var i = 1; i <= 5; i++) {
+    for (var j = 1; j <= i; j++) {
+      stdout.write('*');
+    }
+    print('');
+  }
+}
+```                        
+          
